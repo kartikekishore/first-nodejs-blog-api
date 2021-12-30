@@ -80,18 +80,21 @@ app.get("/posts/:id", function (req, res) {
     }
   });
 });
-app.patch('/posts/:id', function (req, res) {
-
-  Post.findByIdAndUpdate(req.params.id,req.body,{new:true}, function (error, post) {
-    if (error) {
-      // send error response
-      res.status(422).send({ error: "Unable to Patch posts " });
-    } else {
-      // send success response
-      res.status(200).send(post);
+app.patch("/posts/:id", function (req, res) {
+  Post.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    function (error, post) {
+      if (error) {
+        // send error response
+        res.status(422).send({ error: "Unable to Patch posts " });
+      } else {
+        // send success response
+        res.status(200).send(post);
+      }
     }
-  });
- 
+  );
 });
 
 // Tasks for you
@@ -99,6 +102,6 @@ app.patch('/posts/:id', function (req, res) {
 // 2. Create API to update a Post
 // 3. Create API to delete a Post
 
-app.listen(3001, function () {
-  console.log("Server is running at port 3001....");
+app.listen(3000, function () {
+  console.log("Server is running at port 3000....");
 });
