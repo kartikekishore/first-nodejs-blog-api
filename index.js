@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+const cors = require("cors");
 // Import models
 const Post = require("./src/models/post");
 const { findById } = require("./src/models/post");
@@ -14,6 +14,9 @@ const db = mongoose.connect("mongodb://localhost:27017/first-node-api-db");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cors());
+app.options("*", cors());
 
 app.get("/", function (req, res) {
   // handle the request for root route
@@ -102,6 +105,6 @@ app.patch("/posts/:id", function (req, res) {
 // 2. Create API to update a Post
 // 3. Create API to delete a Post
 
-app.listen(3000, function () {
-  console.log("Server is running at port 3000....");
+app.listen(3001, function () {
+  console.log("Server is running at port 3001....");
 });
